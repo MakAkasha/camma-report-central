@@ -1,0 +1,95 @@
+
+{
+  "app": {
+    "name": "CAMMA Report Central",
+    "welcome": "Welcome to CAMMA Report Central",
+    "loading": "Loading..."
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "employeeNumber": "Employee Number",
+    "pin": "PIN",
+    "submit": "Submit",
+    "loginSuccess": "Login successful",
+    "loginFailed": "Invalid employee number or PIN"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "reports": "Reports",
+    "analytics": "Analytics",
+    "users": "Users",
+    "calendar": "Calendar",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome",
+    "totalReports": "Total Reports",
+    "reportsToday": "Reports Today",
+    "recentReports": "Recent Reports",
+    "viewAll": "View All"
+  },
+  "reports": {
+    "title": "Reports",
+    "new": "New Report",
+    "view": "View Report",
+    "edit": "Edit Report",
+    "delete": "Delete Report",
+    "tasks": "Tasks",
+    "meetings": "Meetings",
+    "challenges": "Challenges",
+    "submit": "Submit Report",
+    "export": "Export",
+    "exportPDF": "Export as PDF",
+    "exportCSV": "Export as CSV"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "reportSubmitted": "Report Submitted",
+    "noReport": "No Report",
+    "selectDate": "Select Date"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile Settings",
+    "language": "Language",
+    "changePin": "Change PIN",
+    "currentPin": "Current PIN",
+    "newPin": "New PIN",
+    "confirmPin": "Confirm New PIN",
+    "save": "Save Changes",
+    "english": "English",
+    "arabic": "Arabic",
+    "rtl": "Right to Left",
+    "ltr": "Left to Right"
+  },
+  "users": {
+    "title": "User Management",
+    "addUser": "Add User",
+    "editUser": "Edit User",
+    "id": "ID",
+    "employeeNumber": "Employee Number",
+    "email": "Email",
+    "role": "Role",
+    "department": "Department",
+    "actions": "Actions",
+    "pin": "PIN",
+    "name": "Name",
+    "save": "Save User"
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "from": "From",
+    "to": "To",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "loading": "Loading...",
+    "noData": "No data found"
+  }
+}

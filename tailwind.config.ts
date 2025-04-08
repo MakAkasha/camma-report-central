@@ -56,7 +56,7 @@ export default {
         brand: {
           purple: "#646cff",
           blue: "#4285F4",
-          red: "#EA4335",
+          red: "#e50014", // CAMMA Red
           yellow: "#FBBC05",
           green: "#34A853",
         },

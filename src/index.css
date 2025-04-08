@@ -14,7 +14,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 265 100% 50%;
+    /* CAMMA Red for primary color */
+    --primary: 358 100% 45%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -31,17 +32,17 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 265 100% 50%;
+    --ring: 358 100% 45%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 265 100% 50%;
+    --sidebar-background: 358 100% 45%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 265 100% 50%;
-    --sidebar-accent: 265 70% 60%;
+    --sidebar-primary-foreground: 358 100% 45%;
+    --sidebar-accent: 358 70% 60%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 265 70% 60%;
+    --sidebar-border: 358 70% 60%;
     --sidebar-ring: 0 0% 100%;
   }
 
@@ -55,7 +56,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 265 100% 50%;
+    --primary: 358 100% 45%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -72,7 +73,17 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 265 100% 50%;
+    --ring: 358 100% 45%;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .sidebar-icon {
+    margin-right: 0;
+    margin-left: 0.5rem;
   }
 }
 

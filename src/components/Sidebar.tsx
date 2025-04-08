@@ -1,5 +1,6 @@
 
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import Logo from "./Logo";
@@ -43,6 +44,7 @@ const SidebarItem = ({ href, icon, title, isActive }: SidebarItemProps) => {
 const Sidebar = () => {
   const location = useLocation();
   const { user, logout } = useAuth();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -58,14 +60,14 @@ const Sidebar = () => {
         <SidebarItem
           href="/dashboard"
           icon={<Home size={18} />}
-          title="Dashboard"
+          title={t('navigation.dashboard')}
           isActive={isActive("/dashboard")}
         />
         
         <SidebarItem
           href="/reports"
           icon={<FileText size={18} />}
-          title="Reports"
+          title={t('navigation.reports')}
           isActive={isActive("/reports") || isActive("/reports/new")}
         />
         
@@ -73,7 +75,7 @@ const Sidebar = () => {
           <SidebarItem
             href="/analytics"
             icon={<BarChart3 size={18} />}
-            title="Analytics"
+            title={t('navigation.analytics')}
             isActive={isActive("/analytics")}
           />
         )}
@@ -82,7 +84,7 @@ const Sidebar = () => {
           <SidebarItem
             href="/users"
             icon={<Users size={18} />}
-            title="Users"
+            title={t('navigation.users')}
             isActive={isActive("/users")}
           />
         )}
@@ -90,14 +92,14 @@ const Sidebar = () => {
         <SidebarItem
           href="/calendar"
           icon={<Calendar size={18} />}
-          title="Calendar"
+          title={t('navigation.calendar')}
           isActive={isActive("/calendar")}
         />
         
         <SidebarItem
           href="/settings"
           icon={<Settings size={18} />}
-          title="Settings"
+          title={t('navigation.settings')}
           isActive={isActive("/settings")}
         />
       </div>
@@ -109,7 +111,7 @@ const Sidebar = () => {
           onClick={logout}
         >
           <LogOut size={18} />
-          <span>Logout</span>
+          <span>{t('auth.logout')}</span>
         </Button>
       </div>
     </div>
