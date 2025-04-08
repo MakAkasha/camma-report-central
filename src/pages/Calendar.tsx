@@ -107,13 +107,11 @@ const Calendar = () => {
                   selected: "bg-primary text-primary-foreground",
                 }}
                 components={{
-                  Day: ({ day, ...props }) => {
-                    return (
-                      <div {...props} className={`${props.className} ${dayClassNames(day)}`}>
-                        {day.getDate()}
-                      </div>
-                    )
-                  }
+                  Day: ({ date, ...props }) => (
+                    <div {...props} className={`${props.className || ''} ${dayClassNames(date)}`}>
+                      {date.getDate()}
+                    </div>
+                  )
                 }}
               />
             </CardContent>
