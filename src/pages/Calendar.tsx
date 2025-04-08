@@ -107,8 +107,11 @@ const Calendar = () => {
                   selected: "bg-primary text-primary-foreground",
                 }}
                 components={{
-                  Day: ({ date, ...props }) => (
-                    <div {...props} className={`${props.className || ''} ${dayClassNames(date)}`}>
+                  Day: ({ date, ...dayProps }) => (
+                    <div 
+                      {...dayProps} 
+                      className={`${dayProps.className || ''} ${dayClassNames(date)}`}
+                    >
                       {date.getDate()}
                     </div>
                   )
