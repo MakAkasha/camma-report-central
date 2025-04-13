@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
@@ -9,25 +8,21 @@ import { CalendarIcon, CheckCircle } from "lucide-react";
 import AppLayout from "@/components/AppLayout";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
-// Mock API call to fetch report dates
 const fetchReportDates = async () => {
-  // In a real app, this would be an API call
-  await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Mock data - days in the current month with reports
   const today = new Date();
   const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
   
   const reportDates: Date[] = [];
   for (let i = 1; i <= 5; i++) {
-    // Generate some random dates with reports
     const randomDay = Math.floor(Math.random() * (lastDay.getDate() - 1) + 1);
     reportDates.push(new Date(today.getFullYear(), today.getMonth(), randomDay));
   }
   
-  // Add today if it's a weekday (1-5 is Monday-Friday)
   if (today.getDay() > 0 && today.getDay() < 6) {
     reportDates.push(today);
   }
@@ -44,7 +39,6 @@ const Calendar = () => {
     queryFn: fetchReportDates
   });
   
-  // Check if the selected date has a report
   const hasReport = (day: Date | undefined): boolean => {
     if (!day || !reportDates) return false;
     
@@ -58,7 +52,6 @@ const Calendar = () => {
   const handleDateSelect = (selectedDate: Date | undefined) => {
     setDate(selectedDate);
     
-    // Show toast notification based on whether the date has a report
     if (selectedDate) {
       if (hasReport(selectedDate)) {
         toast.success(t('calendar.reportSubmitted'));
@@ -68,7 +61,6 @@ const Calendar = () => {
     }
   };
   
-  // Custom day rendering to show which days have reports
   const dayClassNames = (day: Date) => {
     if (!reportDates) return "";
     
@@ -107,10 +99,13 @@ const Calendar = () => {
                   selected: "bg-primary text-primary-foreground",
                 }}
                 components={{
-                  Day: ({ date, ...dayProps}) => (
+                  Day: ({ displayMonth, date, ...dayProps }) => (
                     <div 
                       {...dayProps} 
-                      className={`${dayProps?.className || ''} ${dayClassNames(date)}`}
+                      className={cn(
+                        dayProps.className || '', 
+                        dayClassNames(date)
+                      )}
                     >
                       {date.getDate()}
                     </div>
