@@ -107,10 +107,10 @@ const Calendar = () => {
                   selected: "bg-primary text-primary-foreground",
                 }}
                 components={{
-                  Day: ({ date, ...dayProps }) => (
+                  Day: ({ date, ...dayProps}) => (
                     <div 
                       {...dayProps} 
-                      className={`${dayProps.className || ''} ${dayClassNames(date)}`}
+                      className={`${dayProps?.className || ''} ${dayClassNames(date)}`}
                     >
                       {date.getDate()}
                     </div>
