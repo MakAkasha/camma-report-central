@@ -12,7 +12,12 @@ const Header = () => {
   
   // Get user initials for avatar
   const getInitials = () => {
-    if (!user?.name) return user?.employeeNumber?.substring(0, 2) || "U";
+    if (!user?.name){
+      if (!user?.employeeNumber) return "U";
+      else return user?.employeeNumber?.substring(0, 2) || "U";
+
+
+    }
     
     return user.name
       .split(" ")

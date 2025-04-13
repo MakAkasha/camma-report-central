@@ -28,7 +28,7 @@ const Settings = () => {
     toast.success(`${t('settings.language')} ${value === 'en' ? t('settings.english') : t('settings.arabic')}`);
   };
   
-  const handleChangePIN = (e: React.FormEvent) => {
+  const handleChangePIN = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (newPin !== confirmPin) {
@@ -36,13 +36,20 @@ const Settings = () => {
       return;
     }
     
+    const hashedPin = await new Promise<string>((resolve) => {
+      const hash = password_hash(newPin, 'bcrypt');
+      resolve(hash);
+    });
+    
     setIsSubmitting(true);
     
-    // Simulating an API call
+    // API call
+    // await changePin(hashedPin);
+    
     setTimeout(() => {
       toast.success("PIN updated successfully");
       setCurrentPin("");
-      setNewPin("");
+      setNewPin(hashedPin);
       setConfirmPin("");
       setIsSubmitting(false);
     }, 1000);

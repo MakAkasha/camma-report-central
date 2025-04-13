@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { format } from "date-fns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { exportToCSV, exportToPDF } from "@/utils/exportUtils";
 import TimePeriodSelect from "@/components/TimePeriodSelect";
 import { timePeriodOptions } from "@/data/mockData";
 
@@ -81,16 +82,6 @@ const ReportsList = () => {
     
     return matchesSearch && matchesDepartment;
   });
-
-  // CSV export function (mock)
-  const exportToCSV = () => {
-    alert("CSV export functionality would be implemented here");
-  };
-
-  // PDF export function (mock)
-  const exportToPDF = () => {
-    alert("PDF export functionality would be implemented here");
-  };
 
   return (
     <AppLayout>
@@ -152,10 +143,10 @@ const ReportsList = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem onClick={exportToCSV}>
+                  <DropdownMenuItem onClick={() => exportToCSV(filteredReports)}>
                     Export as CSV
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={exportToPDF}>
+                  <DropdownMenuItem onClick={() => exportToPDF(filteredReports)}>
                     Export as PDF
                   </DropdownMenuItem>
                 </DropdownMenuContent>

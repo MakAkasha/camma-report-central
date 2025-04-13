@@ -82,10 +82,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     
     try {
       // Find user by employee number
-      const user = mockUsers.find(user => user.employeeNumber === employeeNumber);
-      
+      const user = mockUsers.find(user => user.employeeNumber === employeeNumber) ;
+
       // Check if user exists and PIN is correct (in a real app, PIN would be hashed)
-      if (user && pin === "1234") { // Simple PIN for demo
+      const getUserPin = () => "1234";
+      
+      const userPin = getUserPin();
+
+      const hashedPin = await new Promise<string>((resolve) => {
+        resolve(password_hash(pin, ''));
+      })
+
+      if (user && password_verify(userPin, hashedPin)) {
         setAuthState({
           user,
           isAuthenticated: true,
@@ -140,3 +148,20 @@ export const useAuth = () => {
   
   return context;
 };
+
+
+/**
+ * Hash a password using a salt.
+ *
+ * @param password - The password to hash.
+ * @param salt - The salt to use for hashing.
+ * @returns The hashed password.
+ */
+
+function password_hash(password: string, salt: string): string {
+  return btoa(password);
+}
+
+function password_verify(password: string, hash: string) {
+  return btoa(password) === hash
+}

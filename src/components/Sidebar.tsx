@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 import Logo from "./Logo";
 import { Button } from "@/components/ui/button";
@@ -107,7 +108,11 @@ const Sidebar = () => {
       <div className="p-3 mt-auto">
         <Button
           variant="ghost"
-          className="w-full justify-start gap-2 text-white hover:bg-sidebar-accent hover:text-white"
+          className="w-full justify-start gap-2 text-white hover:bg-sidebar-accent hover:text-white"          
+          onClick={() => {
+            logout();
+            toast.success("You have been logged out");
+          }}
           onClick={logout}
         >
           <LogOut size={18} />

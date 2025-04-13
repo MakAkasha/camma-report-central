@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const Login = () => {
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [pin, setPin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,10 +22,15 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+    setError(null);
     try {
       const success = await login(employeeNumber, pin);
       if (success) {
+        navigate(from);
+      } else {
+        setError("Invalid credentials");
+        toast.error("Invalid credentials");
+
         navigate(from);
       }
     } finally {

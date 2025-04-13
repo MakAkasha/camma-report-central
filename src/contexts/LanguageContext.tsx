@@ -11,20 +11,26 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { i18n } = useTranslation();
-  const [language, setLanguageState] = useState<string>(localStorage.getItem('language') || 'en');
+  const { i18n } = useTranslation();  
+  const storedLanguage = localStorage.getItem('language');
+  const initialLanguage = storedLanguage ? storedLanguage : 'en';
+  
+  const [language, setLanguageState] = useState<string>(initialLanguage);
   const [isRTL, setIsRTL] = useState<boolean>(language === 'ar');
 
   useEffect(() => {
-    // Set the language in localStorage and i18n
-    localStorage.setItem('language', language);
-    i18n.changeLanguage(language);
+      // Set the language in localStorage and i18n
+      localStorage.setItem('language', language);
+      i18n.changeLanguage(language);
+  
+      // Set RTL attribute on html element
+      const isRtl = language === 'ar';
+      setIsRTL(isRtl);
+      document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
     
-    // Set RTL attribute on html element
-    const isRtl = language === 'ar';
-    setIsRTL(isRtl);
-    document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
-  }, [language, i18n]);
+  }, [language]);
+
+
 
   const setLanguage = (lang: string) => {
     setLanguageState(lang);

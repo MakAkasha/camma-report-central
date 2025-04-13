@@ -97,21 +97,24 @@ export const exportToPDF = (reports: Report[], fileName = 'camma_reports') => {
     // Report content
     doc.setFontSize(12);
     doc.setTextColor(0);
-    doc.text('Tasks:', 14, 55);
-    const taskLines = doc.splitTextToSize(report.tasks || 'None specified', 180);
-    doc.text(taskLines, 14, 62);
+    const tasks = report.tasks || 'None specified';
+    doc.text('Tasks:', 14, 55);    
+    const taskLines = doc.splitTextToSize(tasks, 180);
+    doc.text(taskLines, 14, 62);    
     
     const meetingsY = 62 + (taskLines.length * 7);
     doc.text('Meetings:', 14, meetingsY);
-    const meetingsLines = doc.splitTextToSize(report.meetings || 'None specified', 180);
+    const meetings = report.meetings || 'None specified';
+    const meetingsLines = doc.splitTextToSize(meetings, 180);
     doc.text(meetingsLines, 14, meetingsY + 7);
     
     const challengesY = meetingsY + 7 + (meetingsLines.length * 7);
     doc.text('Challenges:', 14, challengesY);
-    const challengesLines = doc.splitTextToSize(report.challenges || 'None specified', 180);
+    const challenges = report.challenges || 'None specified';
+    const challengesLines = doc.splitTextToSize(challenges, 180);
     doc.text(challengesLines, 14, challengesY + 7);
   });
-  
+
   // Save the PDF
   doc.save(`${fileName}.pdf`);
 };

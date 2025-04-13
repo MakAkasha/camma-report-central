@@ -46,6 +46,27 @@ const Analytics = () => {
     
     return data;
   };
+    
+  // Prepare data for report submission trends chart
+  const getReportTrendsData = () => {
+    const departmentCounts = Object.keys(departmentColors).reduce((acc: Record<string, number>, department) => {
+      acc[department] = 0;
+      return acc;
+    }, {});
+  
+    mockReports.forEach(report => {
+      departmentCounts[report.department]++;
+    });
+  
+    return Object.entries(departmentCounts).map(([department, count]) => ({
+      name: department,
+      count,
+    }));
+  };
+
+  const reportTrendsData = getReportTrendsData();
+
+
   
   const dailyReportsData = getDailyReportsData();
   
@@ -158,15 +179,16 @@ const Analytics = () => {
             ) : (
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart
-                  data={departmentData}
+                  data={reportTrendsData}
                   margin={{
                     top: 5,
                     right: 30,
                     left: 20,
                     bottom: 5,
                   }}
+                  barSize={20}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3"/>
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip />
